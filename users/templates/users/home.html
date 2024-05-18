@@ -1,0 +1,103 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome, {{user.first_name.title|default:'Guest'}}</h1>
+        <p class="lead">
+            <b>Credit Score Prediction System</b> 
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+                <br>
+                <br>
+                <form method="POST" action="{% url 'predict' %}" class="form-group" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label><b>Gender:</b></label>
+                    {{ form.gender}}
+                </div>
+                <div class="form-group">
+                    <label><b>Education:</b></label>
+                    {{ form.education}}
+                </div>
+                <div class="form-group">
+                    <label><b>Marital Status:</b></label>
+                    {{ form.marital_status}}
+                </div>
+                <div class="form-group">
+                    
+                    <label><b>Age:</b></label>
+                    {{ form.age}}
+                </div>
+                <div class="form-group">
+                    <p><b>Limit Balance:</b></p>
+                    <p>Amount of given credit in dollar (includes individual and family/supplementary credit)</p>
+                    <label><b>limit:</b></label>
+                    {{ form.limit}}
+                </div>
+                <div class="form-group">
+                    <p><b>Repayment Status:</b></p>
+                    <p>(-1=pay duly, 1=one month delay, 2=two months delay, … 9=delay for nine months and above)</p>
+                    <label><b>April:</b></label>
+                    {{ form.repay_april}}
+                    <label><b>May:</b></label>
+                    {{ form.repay_may}}
+                    <label><b>June:</b></label>
+                    {{ form.repay_june}}
+                    <label><b>July:</b></label>
+                    {{ form.repay_july}}
+                    <label><b>August:</b></label>
+                    {{ form.repay_aug}}
+                    <label><b>Sep:</b></label>
+                    {{ form.repay_sep}}
+                </div>
+                <div class="form-group">
+                    <p><b>Bill Amounts:</b> Amount of bill statements (in dollar):</b></p>
+                    
+                    <label><b>April:</b></label>
+                    {{ form.bill_april}}
+                    <label><b>May:</b></label>
+                    {{ form.bill_may}}
+                    <label><b>June:</b></label>
+                    {{ form.bill_june}}
+                    <label><b>July:</b></label>
+                    {{ form.bill_july}}
+                    <label><b>August:</b></label>
+                    {{ form.bill_aug}}
+                    <label><b>Sep:</b></label>
+                    {{ form.bill_sep}}
+                </div>
+
+                <div class="form-group">
+                    <p><b>Previous Payments:</b> Amount of previous payments (in dollar)</b></p>
+                    
+                    <label><b>April:</b></label>
+                    {{ form.prev_april}}
+                    <label><b>May:</b></label>
+                    {{ form.prev_may}}
+                    <label><b>June:</b></label>
+                    {{ form.prev_june}}
+                    <label><b>July:</b></label>
+                    {{ form.prev_july}}
+                    <label><b>August:</b></label>
+                    {{ form.prev_aug}}
+                    <label><b>Sep:</b></label>
+                    {{ form.prev_sep}}
+                </div>
+
+                <br>
+                <button class="btn btn-primary btn-lg" type="submit">Predict</button>
+                </form>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+            {% endif %}
+        </p>
+
+
+    </div>
+    
+
+
+{% endblock content %}
