@@ -7,11 +7,43 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from .models import predict_model
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm,predict_form
-
+from django.shortcuts import render
 import pickle
 import numpy as np
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import ContactForm
+def blog_list(request):
+    return render(request, 'users/blog_list.html')
+def service(request):
+    return render(request, 'users/service.html')
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process the data in form.cleaned_data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+
+            # Send an email (for simplicity, we print to the console)
+          
+            
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'users/contact.html', {'form': form})
 
 
+def about(request):
+    return render(request, 'users/about.html')
+
+def main(request):
+    return render(request, 'users/main.html')
 
 def home(request):
     form=predict_form()
@@ -84,6 +116,7 @@ class RegisterView(View):
         # will redirect to the home page if a user tries to access the register page while logged in
         if request.user.is_authenticated:
             return redirect(to='/')
+             
 
         # else process dispatch as it otherwise normally would
         return super(RegisterView, self).dispatch(request, *args, **kwargs)
@@ -152,6 +185,7 @@ def profile(request):
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect(to='users-profile')
+        
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)

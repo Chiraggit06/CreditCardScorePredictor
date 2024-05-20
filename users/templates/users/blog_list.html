@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        /* Basic reset and styles */
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        li,
+        header,
+        footer,
+        section,
+        div {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        /* Header */
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        header nav ul li a:hover,
+        header nav ul li a.btn {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        header nav ul li a.btn {
+            padding: 8px 15px;
+        }
+
+        /* Blog List Page Styles */
+        h1 {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .blog-list .blog-post {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .blog-list .blog-post h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .blog-list .blog-post h2 a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .blog-list .blog-post h2 a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-list .blog-post p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .blog-list .blog-post a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .blog-list .blog-post a:hover {
+            text-decoration: underline;
+        }
+
+        /* Bank Links Styles */
+        .bank-links {
+            margin-top: 40px;
+        }
+
+        .bank-links h2 {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .bank-links ul {
+            list-style: none;
+        }
+
+        .bank-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .bank-links ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .bank-links ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        footer .quick-links,
+        footer .contact-info,
+        footer .social-media {
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer .quick-links a,
+        footer .contact-info p,
+        footer .social-media a {
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        footer .social-media a {
+            display: inline-block;
+        }
+
+        footer .quick-links a:hover,
+        footer .social-media a:hover {
+            text-decoration: underline;
+        }
+
+        /* Additional Styles for Images and Icons */
+        .blog-post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .social-media a .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .social-media a.facebook .icon {
+            background: url('https://image.flaticon.com/icons/png/512/124/124010.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        .social-media a.twitter .icon {
+            background: url('https://image.flaticon.com/icons/png/512/124/124021.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        .social-media a.linkedin .icon {
+            background: url('https://image.flaticon.com/icons/png/512/174/174857.png') no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">CreditScorePro</div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'main' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'service' %}">Services</a></li>
+                    <li><a href="{% url 'blog_list' %}">Blog</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'login' %}" class="btn">Login</a></li>
+                    <li><a href="{% url 'register' %}" class="btn">Sign Up</a></li>
+                    {% else %}
+                    <li><a href="{% url 'logout' %}" class="btn">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <h1>Blog</h1>
+        <div class="blog-post">
+            <!-- Sample blog post -->
+            <div class="container">
+                <h2><a href="#">Understanding Credit Scores</a></h2>
+                <img src="https://via.placeholder.com/800x400" alt="Understanding Credit Scores">
+
+                <p><strong>Introduction</strong></p>
+                <p>Credit scores play a crucial role in our financial lives, influencing our ability to obtain loans, credit cards,
+                    and even secure favorable interest rates. Despite their importance, many people don't fully understand how
+                    credit scores are calculated or the factors that influence them. In this blog post, we'll delve into the
+                    fundamentals of credit scores and explore what you need to know to manage yours effectively.</p>
+            
+                <p><strong>What is a Credit Score?</strong></p>
+                <p>A credit score is a numerical representation of your creditworthiness, indicating to lenders the likelihood that
+                    you will repay borrowed money on time. Credit scores typically range from 300 to 850, with higher scores
+                    indicating lower credit risk. Lenders use credit scores to assess the level of risk associated with extending
+                    credit to an individual.</p>
+            
+                <p><strong>Factors Influencing Credit Scores</strong></p>
+                <ol>
+                    <li><strong>Payment History:</strong> Your payment history accounts for the largest portion of your credit
+                        score. Consistently making on-time payments demonstrates responsible financial behavior and can positively
+                        impact your score.</li>
+                    <li><strong>Credit Utilization:</strong> Credit utilization refers to the percentage of your available credit
+                        that you are currently using. Maintaining a low credit utilization ratio—typically below 30%—can help boost
+                        your credit score.</li>
+                    <li><strong>Length of Credit History:</strong> The length of your credit history also plays a role in
+                        determining your credit score. Lenders prefer to see a longer credit history, as it provides more data on
+                        your financial habits and stability.</li>
+                    <li><strong>Types of Credit:</strong> Having a diverse mix of credit accounts, such as credit cards, installment
+                        loans, and mortgages, can positively influence your credit score. However, it's essential to manage these
+                        accounts responsibly.</li>
+                    <li><strong>New Credit Inquiries:</strong> Opening multiple new credit accounts within a short period can raise
+                        red flags for lenders and potentially lower your credit score. Limiting the number of credit inquiries you
+                        make can help protect your credit score.</li>
+                </ol>
+            
+                <p><strong>Monitoring and Improving Your Credit Score</strong></p>
+                <p>Regularly monitoring your credit score is essential for maintaining healthy financial habits. You can access your
+                    credit score through various credit monitoring services and websites. Additionally, reviewing your credit report
+                    for errors and inaccuracies can help ensure that your credit score accurately reflects your financial history.
+                </p>
+            
+                <p>If you're looking to improve your credit score, consider the following strategies:</p>
+                <ul>
+                    <li>Pay all bills on time to establish a positive payment history.</li>
+                    <li>Keep credit card balances low and avoid maxing out your credit limits.</li>
+                    <li>Avoid opening unnecessary new credit accounts.</li>
+                    <li>Monitor your credit report for errors and dispute any inaccuracies.</li>
+                    <li>Consider using credit-building tools, such as secured credit cards or credit-builder loans.</li>
+                </ul>
+            
+                <p><strong>Conclusion</strong></p>
+                <p>Understanding credit scores is crucial for managing your finances effectively and achieving your financial goals.
+                    By knowing the factors that influence your credit score and adopting responsible financial habits, you can take
+                    control of your credit health and build a solid financial foundation for the future.</p>
+            </div>
+           
+        </div>
+
+        <!-- Bank Links -->
+        <div class="bank-links">
+            <h2>Bank Links</h2>
+            <ul>
+                <li><a href="https://www.bankofamerica.com" target="_blank">Bank of America</a></li>
+                <li><a href="https://www.chase.com" target="_blank">Chase</a></li>
+                <li><a href="https://www.citi.com" target="_blank">Citi</a></li>
+                <li><a href="https://www.wellsfargo.com" target="_blank">Wells Fargo</a></li>
+                <li><a href="https://www.usbank.com" target="_blank">US Bank</a></li>
+                <!-- Add more bank links as needed -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: support@creditscorepro.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Address: 123 Finance St., Suite 100, FinCity</p>
+            </div>
+            <div class="social-media">
+                <a href="#" class="facebook"><span class="icon"></span>Facebook</a>
+                <a href="#" class="twitter"><span class="icon"></span>Twitter</a>
+                <a href="#" class="linkedin"><span class="icon"></span>LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Score Predictor & Analyzer</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header .logo {
+            float: left;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+
+        header nav {
+            float: right;
+            margin-right: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        header nav ul li .btn {
+            background: #f4b400;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?finance') center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .hero .cta-btn {
+            background: #f4b400;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .hero .cta-btn:hover {
+            background: #ffa500;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .steps,
+        .features,
+        .articles {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .step,
+        .feature,
+        .article,
+        .testimonial,
+        .faq {
+            flex: 1 1 300px;
+            margin: 10px;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .testimonial p {
+            margin: 5px 0;
+        }
+
+        .demo-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .demo-content .screenshots img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 10px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer .quick-links,
+        footer .contact-info,
+        footer .social-media {
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #f4b400;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">CreditScorePro</div>
+            <nav>
+                <ul>
+                    <li><a class="nav-links" href="{% url 'main' %}">Home</a></li>
+                    <li><a class="nav-links" href="{% url 'about' %}">About</a></li>
+                    <li><a class="nav-links" href="{% url 'service' %}">Services</a></li>
+                    <li><a class="nav-links" href="{% url 'blog_list' %}">Blog</a></li>
+                    <li><a class="nav-links" href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Understand Your Credit Score Like Never Before</h1>
+            <p>Get your credit score, detailed analysis, and personalized tips to improve your financial health.</p>
+            <a href="/" class="cta-btn">Check Your Score Now</a>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Step 1</h3>
+                    <p>User inputs their information.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 2</h3>
+                    <p>The system analyzes the data.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 3</h3>
+                    <p>Users receive their credit score and detailed analysis.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 4</h3>
+                    <p>Get tips for improving their credit score.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Benefits Section -->
+    <section class="features-benefits">
+        <div class="container">
+            <h2>Features & Benefits</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Real-Time Updates</h3>
+                    <p>Stay updated with your latest credit score.</p>
+                </div>
+                <div class="feature">
+                    <h3>Personalized Tips</h3>
+                    <p>Receive customized advice to improve your score.</p>
+                </div>
+                <div class="feature">
+                    <h3>Detailed Analysis Reports</h3>
+                    <p>Get comprehensive insights into your credit behavior.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Credit Card Statistics</h2>
+            <a href="https://www.forbes.com/advisor/credit-cards/credit-card-statistics/"class="testimonial">
+             
+           <p> great site to check score</p>
+                </a>
+                            </div>
+                            </div>
+                            </section>
+                            
+                            <!-- Demo/Preview Section -->
+                            <section class="demo">
+                                <div class="container">
+                                    <h2>Demo/Preview</h2>
+                                    <div class="demo-content">
+                                        <div class="interactive-demo">
+                                            <p>[Interactive Demo Placeholder]</p>
+                                        </div>
+                                        <div class="screenshots">
+                                            <img src="https://via.placeholder.com/300" alt="Screenshot 1">
+                                            <img src="https://via.placeholder.com/300" alt="Screenshot 2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <!-- Security & Privacy Section -->
+                            <section class="security-privacy">
+                                <div class="container">
+                                    <h2>Security & Privacy</h2>
+                                    <p>Your data is protected with state-of-the-art security measures.</p>
+                                    <p>We ensure your information remains confidential and secure.</p>
+                                </div>
+                            </section>
+                            
+                            <!-- Blog/Resources Section -->
+                            <section class="blog-resources">
+                                <div class="container">
+                                    <h2>Blog & Resources</h2>
+                                    <div class="articles">
+                                        <article>
+                                            <h3>Understanding Credit Scores</h3>
+                                            <p>A comprehensive guide to how credit scores work.</p>
+                                            <a href="#">Read More</a>
+                                        </article>
+                                        <article>
+                                            <h3>Tips for Improving Your Credit</h3>
+                                            <p>Learn effective strategies to boost your credit score.</p>
+                                            <a href="#">Read More</a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <!-- FAQs Section -->
+                            <section class="faqs">
+                                <div class="container">
+                                    <h2>Frequently Asked Questions</h2>
+                                    <div class="faq">
+                                        <h3>What is a credit score?</h3>
+                                        <p>A credit score is a numerical representation of your creditworthiness.</p>
+                                    </div>
+                                    <div class="faq">
+                                        <h3>How is my data protected?</h3>
+                                        <p>We use advanced encryption methods to secure your data.</p>
+                                    </div>
+                                </div>
+                            </section>
+                            
+                            <!-- Footer -->
+                            <footer>
+                                <div class="container">
+                                    <div class="quick-links">
+                                        <a href="#">Terms of Service</a>
+                                        <a href="#">Privacy Policy</a>
+                                        <a href="#">Help Center</a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <p>Email: support@creditscorepro.com</p>
+                                        <p>Phone: (123) 456-7890</p>
+                                        <p>Address: 123 Finance St., Suite 100, FinCity</p>
+                                    </div>
+                                    <div class="social-media">
+                                        <a href="#">Facebook</a>
+                                        <a href="#">Twitter</a>
+                                        <a href="#">LinkedIn</a>
+                                    </div>
+                                </div>
+                            </footer>
+                            </body>
+                            
+                            </html>
